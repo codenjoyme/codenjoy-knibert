@@ -38,14 +38,14 @@ import java.util.List;
 
 import static com.codenjoy.dojo.services.PointImpl.pt;
 
-public class ApofigSolver implements Solver<Board> {
+public class AISolver implements Solver<Board> {
 
     private Dice dice;
     private DeikstraFindWay way;
     private DeikstraFindWay.Possible possible;
     private Board board;
 
-    public ApofigSolver(Dice dice) {
+    public AISolver(Dice dice) {
         this.dice = dice;
         this.way = new DeikstraFindWay();
     }
@@ -137,7 +137,7 @@ public class ApofigSolver implements Solver<Board> {
 
     public static void start(String name, Dice dice) {
         WebSocketRunner.runAI(name,
-                new ApofigSolver(dice),
+                new AISolver(dice),
                 new Board());
     }
 

@@ -38,7 +38,7 @@ import java.util.List;
 import static com.codenjoy.dojo.services.Direction.*;
 import static org.junit.Assert.assertEquals;
 
-public class ApofigSolverTest {
+public class AISolverTest {
 
     // этот тест проверяет что если спереди яблочко по направлению движения, то змейка не свернет
     @Test
@@ -455,7 +455,7 @@ public class ApofigSolverTest {
         List<Direction> actualPath = new LinkedList<Direction>();
         System.out.println("Now Snake at: " + snake.toString());
         do {
-            Direction actual = Direction.valueOf(new ApofigSolver(null).get(board));
+            Direction actual = Direction.valueOf(new AISolver(null).get(board));
             actualPath.add(actual);
 
             if (actual.equals("")) {
