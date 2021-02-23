@@ -43,7 +43,7 @@ import static com.codenjoy.dojo.snake.services.GameSettings.Keys.START_SNAKE_LEN
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
-public class SnakeTest {
+public class GameTest {
 
     private static final int BOARD_SIZE = 9;
     private Field board;
