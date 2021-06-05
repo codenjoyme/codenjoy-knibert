@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.snake.client.ai;
+package com.codenjoy.dojo.snake.services.ai;
 
 /*-
  * #%L

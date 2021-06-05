@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.snake.client.ai;
+package com.codenjoy.dojo.snake.services.ai;
 
 /*-
  * #%L
@@ -25,9 +25,9 @@ package com.codenjoy.dojo.snake.client.ai;
 
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.PointImpl;
 import com.codenjoy.dojo.snake.client.Board;
 import com.codenjoy.dojo.snake.model.Elements;
+import com.codenjoy.dojo.snake.services.ai.AISolver;
 import org.junit.Test;
 
 import java.util.Arrays;
