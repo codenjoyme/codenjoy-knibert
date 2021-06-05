@@ -1,4 +1,4 @@
-package com.codenjoy.dojo.snake.model;
+package com.codenjoy.dojo.snake.client;
 
 /*-
  * #%L
@@ -25,7 +25,8 @@ package com.codenjoy.dojo.snake.model;
 
 import com.codenjoy.dojo.services.printer.CharElements;
 
-public enum Elements implements CharElements {
+public enum Element implements CharElements {
+
     BAD_APPLE('☻'),
     GOOD_APPLE('☺'),
 
@@ -51,7 +52,7 @@ public enum Elements implements CharElements {
 
     final char ch;
 
-    Elements(char ch) {
+    Element(char ch) {
         this.ch = ch;
     }
 
@@ -65,8 +66,8 @@ public enum Elements implements CharElements {
         return ch;
     }
 
-    public static Elements valueOf(char ch) {
-        for (Elements el : Elements.values()) {
+    public static Element valueOf(char ch) {
+        for (Element el : Element.values()) {
             if (el.ch == ch) {
                 return el;
             }
