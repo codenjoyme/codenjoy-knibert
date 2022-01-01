@@ -13,7 +13,7 @@
     <artifactId>${module.name}-engine</artifactId>
 
     <properties>
-        <module.name>snake</module.name>
+        <module.name>knibert</module.name>
         <scala.version>2.13.4</scala.version>
         <maven-scala-plugin.version>2.15.2</maven-scala-plugin.version>
     </properties>
