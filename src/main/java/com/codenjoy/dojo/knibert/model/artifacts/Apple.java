@@ -27,7 +27,7 @@ import com.codenjoy.dojo.games.knibert.Element;
 import com.codenjoy.dojo.knibert.model.Hero;
 import com.codenjoy.dojo.knibert.model.Player;
 import com.codenjoy.dojo.services.Point;
-import com.codenjoy.dojo.services.State;
+import com.codenjoy.dojo.services.printer.state.State;
 
 public class Apple extends EateablePoint implements Affectable, State<Element, Player> {
 

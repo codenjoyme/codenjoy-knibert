@@ -28,7 +28,7 @@ import com.codenjoy.dojo.knibert.model.Hero;
 import com.codenjoy.dojo.knibert.model.Player;
 import com.codenjoy.dojo.services.Point;
 import com.codenjoy.dojo.services.PointImpl;
-import com.codenjoy.dojo.services.State;
+import com.codenjoy.dojo.services.printer.state.State;
 
 public class Wall extends PointImpl implements Affectable, State<Element, Player> {
 
