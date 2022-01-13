@@ -28,10 +28,10 @@ import com.codenjoy.dojo.knibert.model.Hero;
 import com.codenjoy.dojo.knibert.model.Player;
 import com.codenjoy.dojo.knibert.model.Walls;
 import com.codenjoy.dojo.knibert.services.GameSettings;
-import com.codenjoy.dojo.services.Dice;
 import com.codenjoy.dojo.services.Direction;
 import com.codenjoy.dojo.services.EventListener;
 import com.codenjoy.dojo.services.Point;
+import com.codenjoy.dojo.services.dice.MockDice;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
@@ -43,14 +43,13 @@ import static com.codenjoy.dojo.services.PointImpl.pt;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class RandomArtifactGeneratorTest {
 
     private RandomArtifactGenerator generator;
-    private Dice dice;
+    private MockDice dice;
     private Hero hero;
     private Stone stone;
     private Apple apple;
@@ -61,7 +60,7 @@ public class RandomArtifactGeneratorTest {
 
     @Before
     public void initGenerator() {
-        dice = mock(Dice.class);
+        dice = new MockDice();
         generator = new RandomArtifactGenerator(dice);
 
         initBoardMock();
@@ -142,7 +141,7 @@ public class RandomArtifactGeneratorTest {
     }
 
     private void dice(Point pt) {
-        when(dice.next(anyInt())).thenReturn(pt.getX(), pt.getY());
+        dice.then(pt.getX(), pt.getY());
     }
 
     /**
