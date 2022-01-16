@@ -149,7 +149,7 @@ public class Knibert implements Field {
     }
 
     @Override
-    public int getSize() {
+    public int size() {
         return size;
     }
 

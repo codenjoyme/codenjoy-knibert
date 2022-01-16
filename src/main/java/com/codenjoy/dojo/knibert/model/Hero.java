@@ -179,9 +179,9 @@ public class Hero extends PlayerHero<Field> implements Affectable, Iterable<Tail
 
     public void walk(Field board) {
         Point place = whereToMove();                                
-        place = teleport(board.getSize(), place);
+        place = teleport(board.size(), place);
         board.getAt(place).affect(this);
-        validatePosition(board.getSize(), place);
+        validatePosition(board.size(), place);
         move(place.getX(), place.getY());
     }
 

@@ -41,8 +41,6 @@ public interface Field extends GameField<Player, Hero> {
 
     Affectable getAt(Point place);
 
-    int getSize();
-
     Hero hero();
 
     Player player();

@@ -56,7 +56,7 @@ public class PrinterTest {
     @Before
     public void init() {
         board = mock(Field.class);
-        when(board.getSize()).thenReturn(BOARD_SIZE);
+        when(board.size()).thenReturn(BOARD_SIZE);
         when(board.getApple()).thenReturn(null);
         when(board.getStone()).thenReturn(null);
         when(board.getWalls()).thenReturn(new Walls());
