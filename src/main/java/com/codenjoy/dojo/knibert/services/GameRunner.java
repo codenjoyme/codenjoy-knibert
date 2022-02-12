@@ -46,6 +46,8 @@ import static com.codenjoy.dojo.knibert.services.GameSettings.Keys.BOARD_SIZE;
 
 public class GameRunner extends AbstractGameType<GameSettings> {
 
+    public static final String GAME_NAME = "knibert";
+
     @Override
     public PlayerScores getPlayerScores(Object score, GameSettings settings) {
         return new ScoresImpl<>(Integer.parseInt(score.toString()), settings.calculator());
@@ -68,7 +70,7 @@ public class GameRunner extends AbstractGameType<GameSettings> {
 
     @Override
     public String name() {
-        return "knibert";
+        return GAME_NAME;
     }
 
     @Override
