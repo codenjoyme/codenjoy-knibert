@@ -23,31 +23,32 @@ package com.codenjoy.dojo.knibert.services;
  */
 
 import com.codenjoy.dojo.services.event.Calculator;
-import com.codenjoy.dojo.services.event.ScoresImpl;
+import com.codenjoy.dojo.services.settings.PropertiesKey;
 import com.codenjoy.dojo.services.settings.SettingsImpl;
 import com.codenjoy.dojo.services.settings.SettingsReader;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static com.codenjoy.dojo.knibert.services.GameRunner.GAME_NAME;
 import static com.codenjoy.dojo.knibert.services.GameSettings.Keys.*;
 import static com.codenjoy.dojo.services.event.Mode.CUMULATIVELY;
 
 public class GameSettings extends SettingsImpl implements SettingsReader<GameSettings> {
 
-    public enum Keys implements Key {
+    public enum Keys implements PropertiesKey {
 
-        BOARD_SIZE("[Level] Board size"),
-        GAME_OVER_PENALTY("[Score] Game over penalty"),
-        START_HERO_LENGTH("[Game] Start hero length"),
-        EAT_STONE_PENALTY("[Score] Eat stone penalty"),
-        EAT_STONE_DECREASE("[Game] Eat stone decrease"),
-        SCORE_COUNTING_TYPE(ScoresImpl.SCORE_COUNTING_TYPE.key());
+        BOARD_SIZE,
+        GAME_OVER_PENALTY,
+        START_HERO_LENGTH,
+        EAT_STONE_PENALTY,
+        EAT_STONE_DECREASE,
+        SCORE_COUNTING_TYPE;
 
         private String key;
 
-        Keys(String key) {
-            this.key = key;
+        Keys() {
+            this.key = key(GAME_NAME);
         }
 
         @Override
