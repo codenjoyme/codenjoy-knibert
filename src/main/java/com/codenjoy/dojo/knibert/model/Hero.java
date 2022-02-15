@@ -252,16 +252,16 @@ public class Hero extends PlayerHero<Field> implements Affectable, Iterable<Tail
         if (orientation(prev, curr) == HORIZONTAL) {
             boolean clockwise = curr.getY() < next.getY() ^ curr.getX() > prev.getX();
             if (curr.getY() < next.getY()) {
-                return (clockwise)?TURNED_RIGHT_UP:TURNED_LEFT_UP;
+                return (clockwise) ? TURNED_RIGHT_UP : TURNED_LEFT_UP;
             } else {
-                return (clockwise)?TURNED_LEFT_DOWN:TURNED_RIGHT_DOWN;
+                return (clockwise) ? TURNED_LEFT_DOWN : TURNED_RIGHT_DOWN;
             }
         } else {
             boolean clockwise = curr.getX() < next.getX() ^ curr.getY() < prev.getY();
             if (curr.getX() < next.getX()) {
-                return (clockwise)?TURNED_RIGHT_DOWN:TURNED_RIGHT_UP;
+                return (clockwise) ? TURNED_RIGHT_DOWN : TURNED_RIGHT_UP;
             } else {
-                return (clockwise)?TURNED_LEFT_UP:TURNED_LEFT_DOWN;
+                return (clockwise) ? TURNED_LEFT_UP : TURNED_LEFT_DOWN;
             }
         }
     }
@@ -281,9 +281,9 @@ public class Hero extends PlayerHero<Field> implements Affectable, Iterable<Tail
         Point tail = getTail();
 
         if (prev.getX() == tail.getX()) {
-            return (prev.getY() < tail.getY())?UP:DOWN;
+            return (prev.getY() < tail.getY()) ? UP : DOWN;
         } else {
-            return (prev.getX() < tail.getX())?RIGHT:LEFT;
+            return (prev.getX() < tail.getX()) ? RIGHT : LEFT;
         }
     }
 

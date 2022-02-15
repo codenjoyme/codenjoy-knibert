@@ -23,7 +23,12 @@ package com.codenjoy.dojo.knibert.model;
  */
 
 
-public enum BodyDirection{
-    HORIZONTAL, VERTICAL,
-    TURNED_LEFT_UP, TURNED_LEFT_DOWN, TURNED_RIGHT_UP, TURNED_RIGHT_DOWN;
+public enum BodyDirection {
+
+    HORIZONTAL,
+    VERTICAL,
+    TURNED_LEFT_UP,
+    TURNED_LEFT_DOWN,
+    TURNED_RIGHT_UP,
+    TURNED_RIGHT_DOWN;
 }
