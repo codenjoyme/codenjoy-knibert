@@ -461,5 +461,13 @@ public class PrinterTest {
                 "       \n");
     }
 
-
+    @Test
+    public void testIsScreenOrClient() {
+        assertEquals(true, Printer.isScreenOrClient(new Object[]{ true, 1, "string" }));
+        assertEquals(true, Printer.isScreenOrClient(new Object[]{ true }));
+        assertEquals(false, Printer.isScreenOrClient(new Object[]{ false }));
+        assertEquals(false, Printer.isScreenOrClient(new Object[]{ false, 2, "string" }));
+        assertEquals(false, Printer.isScreenOrClient(new Object[]{}));
+        assertEquals(false, Printer.isScreenOrClient(null));
+    }
 }
