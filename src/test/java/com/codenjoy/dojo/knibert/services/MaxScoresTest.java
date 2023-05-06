@@ -32,6 +32,7 @@ import org.junit.Test;
 
 import java.util.stream.IntStream;
 
+import static com.codenjoy.dojo.knibert.services.Event.Type.*;
 import static com.codenjoy.dojo.services.event.Mode.MAX_VALUE;
 import static org.junit.Assert.assertEquals;
 
@@ -42,15 +43,15 @@ public class MaxScoresTest {
     private GameSettings settings;
 
     public void eatApple(int length) {
-        scores.event(Event.EAT_APPLE.apply(length));
+        scores.event(new Event(EAT_APPLE, length));
     }
 
     public void kill() {
-        scores.event(Event.KILL);
+        scores.event(new Event(KILL));
     }
 
     public void eatStone() {
-        scores.event(Event.EAT_STONE);
+        scores.event(new Event(EAT_STONE));
     }
 
     @Before

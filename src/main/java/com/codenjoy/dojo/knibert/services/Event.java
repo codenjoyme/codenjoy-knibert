@@ -22,44 +22,27 @@ package com.codenjoy.dojo.knibert.services;
  * #L%
  */
 
-import com.codenjoy.dojo.services.event.EventObject;
+import com.codenjoy.dojo.services.event.SingleValueEvent;
 
-import java.util.function.Function;
+public class Event extends SingleValueEvent<Event.Type, Integer> {
 
-public class Event implements EventObject<Event.Type, Integer> {
-
-    private Type type;
-    private int value;
-
-    public static final Event KILL = new Event(Type.KILL, 0);
-    public static final Event EAT_STONE = new Event(Type.EAT_STONE, 0);
-    public static final Function<Integer, Event> EAT_APPLE = value -> new Event(Type.EAT_APPLE, value);
-
-    private Event(Type type, int value) {
-        this.type = type;
-        this.value = value;
-    }
-
-    enum Type {
+    public enum Type {
         KILL,
         EAT_STONE,
         EAT_APPLE;
     }
 
-    @Override
-    public Type type() {
-        return type;
+    public Event(Type type) {
+        super(type);
     }
 
-    @Override
-    public Integer value() {
-        return value;
+    public Event(Type type, int value) {
+        super(type, value);
     }
 
     @Override
     public String toString() {
-        return (type == Type.EAT_APPLE)
-                ? "EAT_APPLE[" + value + "]"
-                : type.name();
+        return type() +
+                ((type() == Type.EAT_APPLE) ? "(" + value() + ")" : "");
     }
 }

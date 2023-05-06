@@ -34,6 +34,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import static com.codenjoy.dojo.knibert.model.BodyDirection.*;
+import static com.codenjoy.dojo.knibert.services.Event.Type.*;
 import static com.codenjoy.dojo.services.Direction.*;
 
 public class Hero extends PlayerHero<Field> implements Affectable, Iterable<Tail> {
@@ -134,13 +135,13 @@ public class Hero extends PlayerHero<Field> implements Affectable, Iterable<Tail
     }
 
     public void killMe() {
-        player.event(Event.KILL);
+        player.event(new Event(KILL));
         alive = false;
     }
 
     public void grow() {
         growBy = 1;
-        player.event(Event.EAT_APPLE.apply(getLength()));
+        player.event(new Event(EAT_APPLE, getLength()));
     }
 
     public boolean itsMyHead(Point point) {
@@ -231,11 +232,11 @@ public class Hero extends PlayerHero<Field> implements Affectable, Iterable<Tail
 
     public void eatStone() {
         if (elements.size() <= 10) {
-            player.event(Event.EAT_STONE);
+            player.event(new Event(EAT_STONE));
             killMe();
         } else {
             growBy = -10;
-            player.event(Event.EAT_STONE);
+            player.event(new Event(EAT_STONE));
         }        
     }
 
