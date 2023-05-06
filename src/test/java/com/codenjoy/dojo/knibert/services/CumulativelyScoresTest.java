@@ -22,204 +22,110 @@ package com.codenjoy.dojo.knibert.services;
  * #L%
  */
 
-
-import com.codenjoy.dojo.knibert.TestGameSettings;
-import com.codenjoy.dojo.services.PlayerScores;
-import com.codenjoy.dojo.services.event.Calculator;
-import com.codenjoy.dojo.services.event.ScoresImpl;
-import org.junit.Before;
 import org.junit.Test;
 
-import static com.codenjoy.dojo.knibert.services.Event.Type.*;
 import static com.codenjoy.dojo.knibert.services.GameSettings.Keys.EAT_STONE_PENALTY;
 import static com.codenjoy.dojo.knibert.services.GameSettings.Keys.GAME_OVER_PENALTY;
 import static com.codenjoy.dojo.services.event.Mode.CUMULATIVELY;
-import static org.junit.Assert.assertEquals;
 
-public class CumulativelyScoresTest {
+public class CumulativelyScoresTest extends ScoresTest {
 
-    private PlayerScores scores;
-    private GameSettings settings;
-
-    public void eatApple(int length) {
-        scores.event(new Event(EAT_APPLE, length));
-    }
-
-    public void kill() {
-        scores.event(new Event(KILL));
-    }
-
-    public void eatStone() {
-        scores.event(new Event(EAT_STONE));
-    }
-
-    @Before
-    public void setup() {
-        settings = new TestGameSettings();
-        settings.initScore(CUMULATIVELY);
+    @Override
+    public GameSettings settings() {
+        return super.settings()
+                .initScore(CUMULATIVELY);
     }
 
     @Test
     public void shouldCollectScores() {
-        // given
-        givenScores(140);
-
-        // when
-        eatApple(3);
-        eatApple(4);
-        eatApple(5);
-        eatApple(6);
-
-        eatStone();
-
-        kill();
-
-        // then
-        assertEquals(140
-                    + 3 + 4 + 5 + 6
-                    + settings.integer(EAT_STONE_PENALTY)
-                    + settings.integer(GAME_OVER_PENALTY),
-                score());
+        assertEvents("100:\n" +
+                "EAT_APPLE,3 > +3 = 103\n" +
+                "EAT_APPLE,4 > +4 = 107\n" +
+                "EAT_APPLE,5 > +5 = 112\n" +
+                "EAT_APPLE,6 > +6 = 118\n" +
+                "EAT_STONE > -10 = 108\n" +
+                "KILL > -50 = 58");
     }
 
     @Test
     public void shouldHeroLengthCantLessThen3() {
-        // given
-        givenScores(0);
-
-        // when
-        eatStone();
-        eatStone();
-
-        // then
-        assertEquals(0, score());
-
-        // when
-        eatApple(3);
-
-        // then
-        assertEquals(3, score());
-    }
-
-    private void givenScores(int score) {
-        scores = new ScoresImpl<>(score, new Calculator<>(new Scores(settings)));
+        assertEvents("0:\n" +
+                "EAT_STONE > +0 = 0\n" +
+                "EAT_STONE > +0 = 0\n" +
+                "EAT_APPLE,3 > +3 = 3");
     }
 
     @Test
     public void shouldShortLengthWhenEatStone() {
         // given
-        givenScores(140);
+        settings.integer(EAT_STONE_PENALTY, -10);
 
-        eatApple(3);
-        eatApple(4);
-        eatApple(5);
-        eatApple(6);
-        eatApple(7);
-        eatApple(8);
-        eatApple(9);
-        eatApple(10);
-        eatApple(11);
-        eatApple(12);
-
-        // when
-        eatStone();
-
-        eatApple(3);
-        eatApple(4);
-
-        // then
-        assertEquals(140
-                    + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12
-                    + settings.integer(EAT_STONE_PENALTY)
-                    + 3 + 4, 
-                score());
+        // when then
+        assertEvents("100:\n" +
+                "EAT_APPLE,3 > +3 = 103\n" +
+                "EAT_APPLE,4 > +4 = 107\n" +
+                "EAT_APPLE,5 > +5 = 112\n" +
+                "EAT_APPLE,6 > +6 = 118\n" +
+                "EAT_APPLE,7 > +7 = 125\n" +
+                "EAT_APPLE,8 > +8 = 133\n" +
+                "EAT_APPLE,9 > +9 = 142\n" +
+                "EAT_APPLE,10 > +10 = 152\n" +
+                "EAT_APPLE,11 > +11 = 163\n" +
+                "EAT_APPLE,12 > +12 = 175\n" +
+                "EAT_STONE > -10 = 165\n" +
+                "EAT_APPLE,3 > +3 = 168\n" +
+                "EAT_APPLE,4 > +4 = 172");
     }
 
     @Test
     public void shouldClearScoreTogetherWithHeroLength() {
-        // given
-        givenScores(0);
-
-        eatApple(3);
-        eatApple(4);
-        eatApple(5);
-        eatApple(6);
-        eatApple(7);
-        eatApple(8);
-        eatApple(9);
-        eatApple(10);
-        eatApple(11);
-        eatApple(12);
-
-        // when
-        scores.clear();
-
-        eatApple(3);
-        eatApple(4);
-
-        // then
-        assertEquals(3 + 4, score());
+        assertEvents("100:\n" +
+                "EAT_APPLE,3 > +3 = 103\n" +
+                "EAT_APPLE,4 > +4 = 107\n" +
+                "EAT_APPLE,5 > +5 = 112\n" +
+                "EAT_APPLE,6 > +6 = 118\n" +
+                "EAT_APPLE,7 > +7 = 125\n" +
+                "EAT_APPLE,8 > +8 = 133\n" +
+                "EAT_APPLE,9 > +9 = 142\n" +
+                "EAT_APPLE,10 > +10 = 152\n" +
+                "EAT_APPLE,11 > +11 = 163\n" +
+                "EAT_APPLE,12 > +12 = 175\n" +
+                "(CLEAN) > -175 = 0\n" +
+                "EAT_APPLE,3 > +3 = 3\n" +
+                "EAT_APPLE,4 > +4 = 7");
     }
 
     @Test
     public void shouldStartsFrom3_afterDead() {
         // given
-        givenScores(140);
+        settings.integer(GAME_OVER_PENALTY, -50);
 
-        // when
-        kill();
-
-        eatApple(3);
-        eatApple(4);
-
-        // then
-        assertEquals(140
-                    + settings.integer(GAME_OVER_PENALTY)
-                    + 3 + 4, 
-                score());
-    }
-
-    private int score() {
-        return (int)scores.getScore();
+        // when then
+        assertEvents("100:\n" +
+                "KILL > -50 = 50\n" +
+                "EAT_APPLE,3 > +3 = 53\n" +
+                "EAT_APPLE,4 > +4 = 57");
     }
 
     @Test
     public void shouldStillZeroAfterDead() {
-        // given
-        givenScores(0);
-
-        // when
-        kill();
-
-        // then
-        assertEquals(0, score());
+        assertEvents("0:\n" +
+                "KILL > +0 = 0");
     }
 
     @Test
     public void shouldStillZero_afterEatStone() {
-        // given
-        givenScores(0);
-
-        // when
-        eatStone();
-
-        // then
-        assertEquals(0, score());
+        assertEvents("0:\n" +
+                "EAT_STONE > +0 = 0");
     }
 
     @Test
     public void shouldClearScore() {
-        // given
-        givenScores(0);
-
-        eatApple(3);
-
-        assertEquals(3, score());
-
-        // when
-        scores.clear();
-
-        // then
-        assertEquals(0, score());
+        assertEvents("100:\n" +
+                "EAT_APPLE,3 > +3 = 103\n" +
+                "EAT_APPLE,4 > +4 = 107\n" +
+                "(CLEAN) > -107 = 0\n" +
+                "EAT_APPLE,3 > +3 = 3\n" +
+                "EAT_APPLE,4 > +4 = 7");
     }
 }
