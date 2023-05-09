@@ -108,7 +108,7 @@ public class CumulativelyScoresTest extends ScoresTest {
     }
 
     @Test
-    public void shouldStillZeroAfterDead() {
+    public void shouldNotBeLessThanZero() {
         assertEvents("0:\n" +
                 "KILL > +0 = 0");
     }
