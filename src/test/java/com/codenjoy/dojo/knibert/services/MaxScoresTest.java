@@ -103,7 +103,7 @@ public class MaxScoresTest extends ScoresTest {
     }
 
     @Test
-    public void shouldClearScoreTogetherWithHeroLength() {
+    public void shouldCleanScoreTogetherWithHeroLength() {
         assertEvents(scoreFor(7) + ":\n" +
                 "EAT_APPLE,8 > +8 = 33\n" +
                 "EAT_APPLE,9 > +9 = 42\n" +
@@ -143,7 +143,7 @@ public class MaxScoresTest extends ScoresTest {
     }
 
     @Test
-    public void shouldClearScore() {
+    public void shouldCleanScore() {
         assertEvents("0:\n" +
                 "EAT_APPLE,3 > +3 = 3\n" +
                 "(CLEAN) > -3 = 0");

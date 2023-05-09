@@ -78,7 +78,7 @@ public class CumulativelyScoresTest extends ScoresTest {
     }
 
     @Test
-    public void shouldClearScoreTogetherWithHeroLength() {
+    public void shouldCleanScoreTogetherWithHeroLength() {
         assertEvents("100:\n" +
                 "EAT_APPLE,3 > +3 = 103\n" +
                 "EAT_APPLE,4 > +4 = 107\n" +
@@ -120,7 +120,7 @@ public class CumulativelyScoresTest extends ScoresTest {
     }
 
     @Test
-    public void shouldClearScore() {
+    public void shouldCleanScore() {
         assertEvents("100:\n" +
                 "EAT_APPLE,3 > +3 = 103\n" +
                 "EAT_APPLE,4 > +4 = 107\n" +
